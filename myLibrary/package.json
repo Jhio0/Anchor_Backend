@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@types/mongodb-uri": "^0.9.4",
-    "@types/node": "^25.0.10"
+    "@types/node": "^25.0.10",
+    "typescript": "^7.0.2"
   }
 }
