@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2022", // compiled JS version
+    "module": "Nodenext", // or "ESNext" if using ES modules
+    "rootDir": "src", // your TypeScript source folder
+    "outDir": "build", // compiled output folder
+    "declaration": true, // generate .d.ts files
+    "sourceMap": true, // generate .js.map files
+    "esModuleInterop": true,
+    "moduleResolution": "Nodenext",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "include": ["src"]
+}

@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2022", // compiled JS version
+    "module": "nodenext", // or "ESNext" if using ES modules
+    "rootDir": "src", // your TypeScript source folder
+    "outDir": "build", // compiled output folder
+    "declaration": true, // generate .d.ts files
+    "sourceMap": true, // generate .js.map files
+    "esModuleInterop": true,
+    "moduleResolution": "nodenext",
+    "skipLibCheck": true // ✅ Ignore type errors in node_modules
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "build"]
+}
