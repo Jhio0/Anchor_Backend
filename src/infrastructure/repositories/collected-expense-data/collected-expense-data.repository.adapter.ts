@@ -9,6 +9,7 @@ import {
   CreateCollectedExpenseData,
   UpdateCollectedExpenseData,
   CollectedExpenseRepositoryPort,
+  UpdateExpenseItemsInput,
 } from "../../../domain/repository/collected-expense-data.repository.port";
 
 @Repository("CollectedExpenseData", collectedExpenseDataSchema)
@@ -21,6 +22,19 @@ class CollectedExpenseRepositoryAdapter
   >
   implements CollectedExpenseRepositoryPort
 {
+  async updateExpenseItems(input: UpdateExpenseItemsInput): Promise<void> {
+    const { userId, category, items } = input;
+
+    await this.model.updateOne(
+      { userId },
+      {
+        $set: {
+          [category]: items,
+        },
+      },
+    );
+  }
+
   async findByUserId(userId: string): Promise<CollectedExpenseData> {
     const document = await this.model.findOne({ userId }).exec();
 

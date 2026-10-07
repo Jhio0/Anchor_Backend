@@ -19,6 +19,7 @@ type Mutation {
   submitCollectIncomeScreen(input: CollectIncomeApplicationInput!): ApplicationPayload!
   submitExpenseScreen(input: ExpenseApplicationInput!): ApplicationPayload!
   submitInformationReviewScreen(input: InformationReviewScreenInput!): ApplicationPayload!
+  updateCollectedExpenseItems(input: UpdateCollectedExpenseItemsInput): Boolean!
 }
 
 type AuthPayload {
@@ -124,6 +125,11 @@ type CollectedExpenseItem {
   source: CollectedExpenseSource!
 }
 
+input CollectedExpenseItemInput {
+  name: String!
+  amount: Float!
+}
+
 type CollectedExpenseData {
   userId: ID!
   applicationId: ID!
@@ -134,4 +140,9 @@ type CollectedExpenseData {
   essentialItems: [CollectedExpenseItem!]!
   financialItems: [CollectedExpenseItem!]!
   subscriptionItems: [CollectedExpenseItem!]!
+}
+
+input UpdateCollectedExpenseItemsInput {
+  category: CollectedExpenseSource!
+  items: [CollectedExpenseItemInput!]!
 }

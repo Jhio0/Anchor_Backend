@@ -62,6 +62,11 @@ export type CollectedExpenseItem = {
   source: CollectedExpenseSource;
 };
 
+export type CollectedExpenseItemInput = {
+  amount: Scalars['Float']['input'];
+  name: Scalars['String']['input'];
+};
+
 export enum CollectedExpenseSource {
   ESSENTIALS = 'ESSENTIALS',
   FINANCIAL_LOAN = 'FINANCIAL_LOAN',
@@ -136,6 +141,7 @@ export type Mutation = {
   submitCollectIncomeScreen: ApplicationPayload;
   submitExpenseScreen: ApplicationPayload;
   submitInformationReviewScreen: ApplicationPayload;
+  updateCollectedExpenseData: Scalars['Boolean']['output'];
 };
 
 
@@ -168,6 +174,11 @@ export type MutationsubmitInformationReviewScreenArgs = {
   input: InformationReviewScreenInput;
 };
 
+
+export type MutationupdateCollectedExpenseDataArgs = {
+  input?: InputMaybe<UpdateCollectedExpenseDataInput>;
+};
+
 export type Query = {
   __typename?: 'Query';
   collectedExpenseData: CollectedExpenseData;
@@ -196,6 +207,11 @@ export type SubscriptionExpensePayload = ScreenPayload & {
   __typename?: 'SubscriptionExpensePayload';
   applicationId: Scalars['String']['output'];
   screen: ApplicationScreen;
+};
+
+export type UpdateCollectedExpenseDataInput = {
+  category: CollectedExpenseSource;
+  items: Array<CollectedExpenseItemInput>;
 };
 
 export type User = {

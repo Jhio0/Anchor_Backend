@@ -7,6 +7,7 @@ import { UserAuthQueryResolver } from "./userAuth/userAuth.query.resolver";
 import { ApplicationPayload } from "./mutation/submit-screens/mapper/application-payload.mapper";
 import { SubmitInformationReviewScreenMutationResolver } from "./mutation/submit-screens/submit-information-review.mutation.resolver";
 import { GetCollectedExpenseQueryResolver } from "./query/getCollectedExpenseData.resolver";
+import { UpdateCollectedExpenseDataResolver } from "./mutation/updateCollectedExpenseData.mutation.resolver";
 
 export function createResolvers() {
   const resolvers = buildResolvers({
@@ -17,6 +18,7 @@ export function createResolvers() {
       SubmitIncomeScreenMutationResolver,
       SubmitInformationReviewScreenMutationResolver,
       UserAuthMutationResolver,
+      UpdateCollectedExpenseDataResolver,
     ],
   });
 

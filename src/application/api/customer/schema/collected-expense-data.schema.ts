@@ -14,6 +14,12 @@ export const collectedExpenseSchema = gql`
     source: CollectedExpenseSource!
   }
 
+  input CollectedExpenseItemInput {
+    name: String!
+    amount: Float!
+  }
+
+
   type CollectedExpenseData {
     userId: ID!
     applicationId: ID!
@@ -26,7 +32,16 @@ export const collectedExpenseSchema = gql`
     subscriptionItems: [CollectedExpenseItem!]!
   }
 
+  input UpdateCollectedExpenseItemsInput {
+    category: CollectedExpenseSource!
+    items: [CollectedExpenseItemInput!]!
+  }
+
   type Query {
     collectedExpenseData: CollectedExpenseData!
+  }
+
+  type Mutation {
+    updateCollectedExpenseItems(input: UpdateCollectedExpenseItemsInput): Boolean!
   }
 `;

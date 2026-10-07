@@ -10,7 +10,13 @@ export type ExpenseItems = {
   source: ExpenseSource;
 };
 
-export interface CollectedExpenseData {
+export type CollectedExpenseItems = {
+  essentialItems: ExpenseItems[];
+  financialItems: ExpenseItems[];
+  subscriptionItems: ExpenseItems[];
+};
+
+export interface CollectedExpenseData extends CollectedExpenseItems {
   id: string;
   userId: string;
   applicationId: string;
@@ -18,7 +24,4 @@ export interface CollectedExpenseData {
   totalExpense: number;
   moneyLeft: number;
   savingsRate: number;
-  essentialItems: ExpenseItems[];
-  financialItems: ExpenseItems[];
-  subscriptionItems: ExpenseItems[];
 }
