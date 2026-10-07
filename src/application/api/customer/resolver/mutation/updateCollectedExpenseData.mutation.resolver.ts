@@ -1,9 +1,10 @@
 import { enumFromKeyStringThrow, GraphQLContext, Resolver } from "myLibrary";
-import { UpdateCollectedExpenseDataInput } from "../../schema";
+
 import { inject } from "tsyringe";
 import { ProviderTokens } from "../../../../../lib/injection-tokens/provider-tokens";
 import { CollectedExpenseDataProviderPort } from "../../../../../domain/provider/collected-expense-data.provider.port";
 import { ExpenseSource } from "../../../../../domain/entities/collected-expsense-data";
+import { UpdateCollectedExpenseItemsInput } from "../../schema";
 
 @Resolver
 export class UpdateCollectedExpenseDataResolver {
@@ -14,7 +15,7 @@ export class UpdateCollectedExpenseDataResolver {
 
   async updateCollectedExpenseItems(
     _: unknown,
-    args: { input: UpdateCollectedExpenseDataInput },
+    args: { input: UpdateCollectedExpenseItemsInput },
     context: GraphQLContext,
   ): Promise<Boolean> {
     const userId = context.currentUser?.userId;

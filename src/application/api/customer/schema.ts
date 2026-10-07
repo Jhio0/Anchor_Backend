@@ -141,7 +141,7 @@ export type Mutation = {
   submitCollectIncomeScreen: ApplicationPayload;
   submitExpenseScreen: ApplicationPayload;
   submitInformationReviewScreen: ApplicationPayload;
-  updateCollectedExpenseData: Scalars['Boolean']['output'];
+  updateCollectedExpenseItems: Scalars['Boolean']['output'];
 };
 
 
@@ -175,8 +175,8 @@ export type MutationsubmitInformationReviewScreenArgs = {
 };
 
 
-export type MutationupdateCollectedExpenseDataArgs = {
-  input?: InputMaybe<UpdateCollectedExpenseDataInput>;
+export type MutationupdateCollectedExpenseItemsArgs = {
+  input?: InputMaybe<UpdateCollectedExpenseItemsInput>;
 };
 
 export type Query = {
@@ -209,7 +209,7 @@ export type SubscriptionExpensePayload = ScreenPayload & {
   screen: ApplicationScreen;
 };
 
-export type UpdateCollectedExpenseDataInput = {
+export type UpdateCollectedExpenseItemsInput = {
   category: CollectedExpenseSource;
   items: Array<CollectedExpenseItemInput>;
 };
