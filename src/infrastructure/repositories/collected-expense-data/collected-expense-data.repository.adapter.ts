@@ -10,7 +10,9 @@ import {
   UpdateCollectedExpenseData,
   CollectedExpenseRepositoryPort,
   UpdateExpenseItemsInput,
+  ExpenseSummary,
 } from "../../../domain/repository/collected-expense-data.repository.port";
+import { ExpenseItem } from "../../../application/api/customer/schema";
 
 @Repository("CollectedExpenseData", collectedExpenseDataSchema)
 class CollectedExpenseRepositoryAdapter
@@ -25,14 +27,53 @@ class CollectedExpenseRepositoryAdapter
   async updateExpenseItems(input: UpdateExpenseItemsInput): Promise<void> {
     const { userId, category, items } = input;
 
+    const doc = await this.model.findOne({ userId });
+
+    if (!doc) {
+      throw new Error(`No expense record found for user ${userId}`);
+    }
+
+    const allItems: ExpenseItem[] = [
+      ...(category === "essentialItems" ? items : (doc.essentialItems ?? [])),
+      ...(category === "financialLoanItems"
+        ? items
+        : (doc.financialItems ?? [])),
+      ...(category === "subscriptionItems"
+        ? items
+        : (doc.subscriptionItems ?? [])),
+    ];
+
+    const { totalExpense, moneyLeft, savingsRate } =
+      this.calculateExpenseSummary(doc.income, allItems);
+
     await this.model.updateOne(
       { userId },
       {
         $set: {
           [category]: items,
+          totalExpense,
+          moneyLeft,
+          savingsRate,
         },
       },
     );
+  }
+
+  private calculateExpenseSummary(
+    incomeAmount: number,
+    expenseItems: ExpenseItem[],
+  ): ExpenseSummary {
+    const totalExpense = expenseItems.reduce(
+      (sum, item) => sum + Number(item.amount || 0),
+      0,
+    );
+
+    const moneyLeft = incomeAmount - totalExpense;
+
+    // Guard against divide-by-zero when income is 0
+    const savingsRate = incomeAmount > 0 ? (moneyLeft / incomeAmount) * 100 : 0;
+
+    return { totalExpense, moneyLeft, savingsRate };
   }
 
   async findByUserId(userId: string): Promise<CollectedExpenseData> {

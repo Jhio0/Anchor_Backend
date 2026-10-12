@@ -18,6 +18,12 @@ export type UpdateExpenseItemsInput = {
   items: ExpenseItems[];
 };
 
+export interface ExpenseSummary {
+  totalExpense: number;
+  moneyLeft: number;
+  savingsRate: number;
+}
+
 interface CollectedExpenseRepositoryPort extends Pick<
   BaseRepositoryPort<
     CollectedExpenseData,
