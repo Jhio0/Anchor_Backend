@@ -34,7 +34,6 @@ export class ApplicationProviderAdapter implements ApplicationProviderPort {
 
   private readonly workflow_id: Record<ApplicationType, string> = {
     [ApplicationType.MONTHLY_COLLECTED_EXPENSE]: "monthly_expenses",
-    [ApplicationType.DAILY_SPENDING_PLAN]: "daily_expense",
   };
 
   async createApplication(

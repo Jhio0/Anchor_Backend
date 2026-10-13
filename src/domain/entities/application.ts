@@ -7,7 +7,6 @@ export enum ApplicationStatus {
 
 export enum ApplicationType {
   MONTHLY_COLLECTED_EXPENSE = "MONTHLY_COLLECTED_EXPENSE",
-  DAILY_SPENDING_PLAN = "DAILY_SPENDING_PLAN",
 }
 
 export enum ApplicationScreen {
