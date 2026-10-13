@@ -1,10 +1,10 @@
 import { invertMap } from "myLibrary";
-import { CollectIncomeNode } from "../workflow/first_workflow/nodes/collect-income.node";
+import { CollectIncomeNode } from "../workflow/monthly_expenses_workflow/nodes/collect-income.node";
 import { ApplicationScreen } from "./application";
-import { EssentialExpenseNode } from "../workflow/first_workflow/nodes/essential-expense-node";
-import { FinancialLoanExpenseNode } from "../workflow/first_workflow/nodes/financial-loan-expense-node";
-import { SubscriptionExpenseNode } from "../workflow/first_workflow/nodes/subscription-expense-node";
-import { InformationReviewNode } from "../workflow/first_workflow/nodes/information-review.node";
+import { EssentialExpenseNode } from "../workflow/monthly_expenses_workflow/nodes/essential-expense-node";
+import { FinancialLoanExpenseNode } from "../workflow/monthly_expenses_workflow/nodes/financial-loan-expense-node";
+import { SubscriptionExpenseNode } from "../workflow/monthly_expenses_workflow/nodes/subscription-expense-node";
+import { InformationReviewNode } from "../workflow/monthly_expenses_workflow/nodes/information-review.node";
 
 export const screenToNodeId: Record<ApplicationScreen, string> = {
   [ApplicationScreen.IncomeDetailScreen]: CollectIncomeNode.NODE_ID,

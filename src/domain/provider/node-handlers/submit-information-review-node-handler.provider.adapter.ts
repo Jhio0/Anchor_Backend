@@ -7,7 +7,7 @@ import { ApplicationPayload } from "../../entities/application";
 import { inject } from "tsyringe";
 import { ProviderTokens } from "../../../lib/injection-tokens/provider-tokens";
 import ApplicationProviderPort from "../application.provider.port";
-import { InformationReviewResolveInput } from "../../workflow/first_workflow/nodes/information-review.node";
+import { InformationReviewResolveInput } from "../../workflow/monthly_expenses_workflow/nodes/information-review.node";
 
 @Provider
 export class SubmitInformationReviewNodeHandlerAdapter implements SubmitInformationReviewNodeHandlerPort {

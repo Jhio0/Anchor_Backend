@@ -10,7 +10,7 @@ import {
   ApplicationPayload,
   ApplicationScreen,
 } from "../../entities/application";
-import { CollectIncomeResolveInput } from "../../workflow/first_workflow/nodes/collect-income.node";
+import { CollectIncomeResolveInput } from "../../workflow/monthly_expenses_workflow/nodes/collect-income.node";
 
 @Provider
 export class SubmitIncomeNodeHandlerProviderAdapter implements SubmitIncomeNodeHandlerProviderPort {

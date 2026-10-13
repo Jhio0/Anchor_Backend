@@ -32,6 +32,11 @@ export class ApplicationProviderAdapter implements ApplicationProviderPort {
     private workflowRegistry: WorkflowRegistry,
   ) {}
 
+  private readonly workflow_id: Record<ApplicationType, string> = {
+    [ApplicationType.MONTHLY_COLLECTED_EXPENSE]: "monthly_expenses",
+    [ApplicationType.DAILY_SPENDING_PLAN]: "daily_expense",
+  };
+
   async createApplication(
     userId: string,
     type: ApplicationType,
@@ -40,7 +45,7 @@ export class ApplicationProviderAdapter implements ApplicationProviderPort {
       this.workflowRegistry.createInitialState({ userId });
 
     const state = await this.workflowRegistry.engine.run(
-      FIRST_WORKFLOW_ID,
+      this.workflow_id[type],
       initialState,
     );
 

@@ -1,7 +1,7 @@
 // application-payload.ts
 import { WorkflowContext } from "myLibrary";
 import { ApplicationScreen as DomainScreen } from "../../../../../../../domain/entities/application";
-import { InformationReviewExecuteOutput } from "../../../../../../../domain/workflow/first_workflow/nodes/information-review.node";
+import { InformationReviewExecuteOutput } from "../../../../../../../domain/workflow/monthly_expenses_workflow/nodes/information-review.node";
 import {
   ApplicationScreen as SchemaScreen,
   ApplicationPayload as SchemaApplicationPayload,

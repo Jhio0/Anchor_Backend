@@ -9,7 +9,7 @@ import {
 import { ApplicationRepositoryPort } from "../repository/application.repository.port";
 import { inject } from "../../lib/strict-inject";
 import { RepositoryTokens } from "../../lib/injection-tokens/repository-tokens";
-import { buildFirstWorkflow } from "./first_workflow/engine";
+import { buildMonthlyExpensesWorkflow } from "./monthly_expenses_workflow/engine";
 import z from "zod";
 import { CollectedExpenseRepositoryPort } from "../repository/collected-expense-data.repository.port";
 
@@ -33,8 +33,8 @@ export class WorkflowRegistry {
     this.engine = new WorkflowEngine();
 
     this.register(
-      "first_workflow",
-      buildFirstWorkflow({
+      "monthly_expenses",
+      buildMonthlyExpensesWorkflow({
         applicationRepository: this.applicationRepositoryPort,
         collectedExpeneRepository: this.collectedExpenseRepositoryPort,
       }),

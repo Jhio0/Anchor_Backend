@@ -7,7 +7,7 @@ import {
 } from "./nodes";
 import { registerEdges } from "./edges/edges";
 
-export function buildFirstWorkflow(deps: WorkflowDeps): Workflow {
+export function buildMonthlyExpensesWorkflow(deps: WorkflowDeps): Workflow {
   const workflow = new Workflow();
   const nodes = createNodes(deps);
 
