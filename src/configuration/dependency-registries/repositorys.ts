@@ -3,8 +3,8 @@
 import { DependencyRegistry, createMongoose, instanceCachingFactory } from 'myLibrary';
 import config from "config-dug";
 import { Mongoose } from "mongoose";
-import { SpendingPlanRepositoryAdapter } from '../../infrastructure/repositories/spending-plan/spending-plan.repository.adapter';
 import { UserRepositoryAdapter } from '../../infrastructure/repositories/user/user.repository.adapter';
+import { SpendingPlanRepositoryAdapter } from '../../infrastructure/repositories/spending-plan/spending-plan.repository.adapter';
 import { CollectedExpenseRepositoryAdapter } from '../../infrastructure/repositories/collected-expense-data/collected-expense-data.repository.adapter';
 import { ApplicationRepositoryAdapter } from '../../infrastructure/repositories/application/application.repository.adapter';
 
@@ -13,8 +13,8 @@ function registerRepositorys(this: DependencyRegistry): void { this.container.re
       createMongoose(process.env.MONGODB_URI as string)
     ),
   });
-  SpendingPlanRepositoryAdapter;
   UserRepositoryAdapter;
+  SpendingPlanRepositoryAdapter;
   CollectedExpenseRepositoryAdapter;
   ApplicationRepositoryAdapter;
 }
