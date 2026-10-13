@@ -15,7 +15,7 @@ type Query {
 type Mutation {
   createUser(name: String!, dateOfBirth: String!, email: String!): User!
   signup(name: String!, email: String!, password: String!, dateOfBirth: String!): AuthPayload!
-  createApplication: ApplicationPayload!
+  createApplication(type: String!): ApplicationPayload!
   submitCollectIncomeScreen(input: CollectIncomeApplicationInput!): ApplicationPayload!
   submitExpenseScreen(input: ExpenseApplicationInput!): ApplicationPayload!
   submitInformationReviewScreen(input: InformationReviewScreenInput!): ApplicationPayload!

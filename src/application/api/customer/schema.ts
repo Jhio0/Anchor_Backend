@@ -145,6 +145,11 @@ export type Mutation = {
 };
 
 
+export type MutationcreateApplicationArgs = {
+  type: Scalars['String']['input'];
+};
+
+
 export type MutationcreateUserArgs = {
   dateOfBirth: Scalars['String']['input'];
   email: Scalars['String']['input'];

@@ -2,6 +2,7 @@ import { Schema, Document } from "mongoose";
 import {
   Application,
   ApplicationStatus,
+  ApplicationType,
 } from "../../../domain/entities/application";
 import workflowSchema from "./schema/workflow.schema";
 
@@ -10,6 +11,7 @@ export interface ApplicationDocument
 
 const ApplicationSchema = new Schema({
   id: { type: String, require: true },
+  type: { type: String, enum: Object.values(ApplicationType), require: true },
   userId: { type: String, require: true },
   workflowContext: workflowSchema,
   screen: { type: String, require: true },

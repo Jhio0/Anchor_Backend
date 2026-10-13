@@ -1,8 +1,9 @@
-import { GraphQLContext, Resolver } from "myLibrary";
+import { enumFromKeyStringThrow, GraphQLContext, Resolver } from "myLibrary";
 import { inject } from "../../../../../lib/strict-inject";
 import { ProviderTokens } from "../../../../../lib/injection-tokens/provider-tokens";
 import ApplicationProviderPort from "../../../../../domain/provider/application.provider.port";
 import { ApplicationPayload } from "../../schema";
+import { ApplicationType } from "../../../../../domain/entities/application";
 
 @Resolver
 export class CreateApplicationMutationResolver {
@@ -13,7 +14,7 @@ export class CreateApplicationMutationResolver {
 
   async createApplication(
     _: unknown,
-    __: unknown,
+    args: { type: string },
     context: GraphQLContext,
   ): Promise<ApplicationPayload> {
     if (!context.currentUser) {
@@ -22,6 +23,7 @@ export class CreateApplicationMutationResolver {
 
     return await this.applicationProviderPort.createApplication(
       context.currentUser.userId,
+      enumFromKeyStringThrow(ApplicationType, args.type),
     );
   }
 }

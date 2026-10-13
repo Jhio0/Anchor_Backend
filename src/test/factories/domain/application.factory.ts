@@ -2,10 +2,12 @@ import { faker } from "@faker-js/faker";
 import {
   Application,
   ApplicationStatus,
+  ApplicationType,
 } from "../../../domain/entities/application";
 
 export const fakeApplication = (overrides = {}): Application => ({
   id: faker.string.uuid(),
+  type: faker.helpers.enumValue(ApplicationType),
   userId: faker.string.uuid(),
   workflowContext: {
     id: faker.string.uuid(),

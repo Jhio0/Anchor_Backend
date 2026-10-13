@@ -91,7 +91,7 @@ export const applicationSchema = gql`
   }
 
   type Mutation {
-    createApplication: ApplicationPayload!
+    createApplication(type: String!): ApplicationPayload!
     submitCollectIncomeScreen(input: CollectIncomeApplicationInput!): ApplicationPayload!
     submitExpenseScreen(input: ExpenseApplicationInput!): ApplicationPayload!
     submitInformationReviewScreen(input: InformationReviewScreenInput!): ApplicationPayload!

@@ -28,6 +28,7 @@ class ApplicationRepositoryAdapter
     return {
       id: document._id.toHexString(),
       userId: document.userId,
+      type: document.type,
       workflowContext: {
         id: document.workflowContext.id,
         context: document.workflowContext.context,

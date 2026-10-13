@@ -2,7 +2,7 @@ import { Application } from "../entities/application";
 import { BaseRepositoryPort } from "myLibrary";
 
 export type CreateApplication = Omit<Application, "id">;
-export type UpdateApplication = Omit<Application, "id" | "userId">;
+export type UpdateApplication = Omit<Application, "id" | "userId" | "type">;
 
 interface ApplicationRepositoryPort extends Pick<
   BaseRepositoryPort<Application, CreateApplication, UpdateApplication>,

@@ -1,5 +1,9 @@
 import { WorkflowContext } from "myLibrary";
-import { ApplicationPayload, ApplicationScreen } from "../entities/application";
+import {
+  ApplicationPayload,
+  ApplicationScreen,
+  ApplicationType,
+} from "../entities/application";
 
 export type CreateApplicationResponse = {
   applicationId: string;
@@ -7,7 +11,10 @@ export type CreateApplicationResponse = {
 };
 
 interface ApplicationProviderPort {
-  createApplication(userId: string): Promise<CreateApplicationResponse>;
+  createApplication(
+    userId: string,
+    type: ApplicationType,
+  ): Promise<CreateApplicationResponse>;
   submitScreen<T extends WorkflowContext>(
     applicationId: string,
     data: T,

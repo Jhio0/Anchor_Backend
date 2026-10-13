@@ -5,6 +5,11 @@ export enum ApplicationStatus {
   COMPLETED = "COMPLETED",
 }
 
+export enum ApplicationType {
+  MONTHLY_COLLECTED_EXPENSE = "MONTHLY_COLLECTED_EXPENSE",
+  DAILY_SPENDING_PLAN = "DAILY_SPENDING_PLAN",
+}
+
 export enum ApplicationScreen {
   IncomeDetailScreen = "IncomeDetailScreen",
   EssentialExpenseScreen = "EssentialExpenseScreen",
@@ -22,6 +27,7 @@ export type ApplicationPayload = {
 
 export interface Application {
   id: string;
+  type: ApplicationType;
   userId: string;
   workflowContext: {
     id: string;

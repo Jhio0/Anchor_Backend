@@ -9,6 +9,7 @@ import {
   ApplicationPayload,
   ApplicationScreen,
   ApplicationStatus,
+  ApplicationType,
 } from "../entities/application";
 
 import { RepositoryTokens } from "../../lib/injection-tokens/repository-tokens";
@@ -31,7 +32,10 @@ export class ApplicationProviderAdapter implements ApplicationProviderPort {
     private workflowRegistry: WorkflowRegistry,
   ) {}
 
-  async createApplication(userId: string): Promise<CreateApplicationResponse> {
+  async createApplication(
+    userId: string,
+    type: ApplicationType,
+  ): Promise<CreateApplicationResponse> {
     const initialState: WorkflowState =
       this.workflowRegistry.createInitialState({ userId });
 
@@ -42,6 +46,7 @@ export class ApplicationProviderAdapter implements ApplicationProviderPort {
 
     const application = await this.applicationRepositoryPort.create({
       userId,
+      type,
       workflowContext: {
         id: FIRST_WORKFLOW_ID,
         context: state.context,
