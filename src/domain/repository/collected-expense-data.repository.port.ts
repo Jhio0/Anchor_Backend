@@ -7,9 +7,8 @@ import {
 
 export type CreateCollectedExpenseData = Omit<CollectedExpenseData, "id">;
 
-export type UpdateCollectedExpenseData = Omit<
-  CollectedExpenseData,
-  "id" | "userId" | "applicationId"
+export type UpdateCollectedExpenseData = Partial<
+  Omit<CollectedExpenseData, "id" | "userId" | "applicationId">
 >;
 
 export type UpdateExpenseItemsInput = {

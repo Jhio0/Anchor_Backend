@@ -24,7 +24,7 @@ const spendingPlanSchema = new Schema<SpendingPlanDocument>({
     type: String,
     required: true,
   },
-  applicationId: {
+  collectedExpenseId: {
     type: String,
     required: true,
   },
@@ -38,7 +38,7 @@ const spendingPlanSchema = new Schema<SpendingPlanDocument>({
   },
   allocations: {
     type: [allocationSchema],
-    required: true,
+    required: false,
   },
 });
 

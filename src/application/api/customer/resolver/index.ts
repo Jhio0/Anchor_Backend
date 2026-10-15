@@ -8,10 +8,16 @@ import { ApplicationPayload } from "./mutation/submit-screens/mapper/application
 import { SubmitInformationReviewScreenMutationResolver } from "./mutation/submit-screens/submit-information-review.mutation.resolver";
 import { GetCollectedExpenseQueryResolver } from "./query/getCollectedExpenseData.resolver";
 import { UpdateCollectedExpenseDataResolver } from "./mutation/updateCollectedExpenseData.mutation.resolver";
+import { CreateSpendingPlanMutationResolver } from "./mutation/createSpendingPlan.resolver";
+import { GetSpendingPlanResolver } from "./query/getSpendingPlan.resolver";
 
 export function createResolvers() {
   const resolvers = buildResolvers({
-    Query: [UserAuthQueryResolver, GetCollectedExpenseQueryResolver],
+    Query: [
+      UserAuthQueryResolver,
+      GetCollectedExpenseQueryResolver,
+      GetSpendingPlanResolver,
+    ],
     Mutation: [
       CreateApplicationMutationResolver,
       SubmitExpenseScreenMutationResolver,
@@ -19,6 +25,7 @@ export function createResolvers() {
       SubmitInformationReviewScreenMutationResolver,
       UserAuthMutationResolver,
       UpdateCollectedExpenseDataResolver,
+      CreateSpendingPlanMutationResolver,
     ],
   });
 

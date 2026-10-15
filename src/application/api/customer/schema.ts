@@ -14,6 +14,12 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type Allocation = {
+  __typename?: 'Allocation';
+  name: Scalars['String']['output'];
+  spent: Scalars['Float']['output'];
+};
+
 export type ApplicationPayload = CollectIncomePayload | CompletedPayload | EssentialExpensePayload | FinancialLoanExpensePayload | InformationReviewPayload | SubscriptionExpensePayload;
 
 export enum ApplicationScreen {
@@ -79,6 +85,11 @@ export type CompletedPayload = ScreenPayload & {
   screen: ApplicationScreen;
 };
 
+export type CreateSpendingPlanInput = {
+  amount: Scalars['Float']['input'];
+  collectedExpenseId: Scalars['String']['input'];
+};
+
 export type EssentialExpensePayload = ScreenPayload & {
   __typename?: 'EssentialExpensePayload';
   applicationId: Scalars['String']['output'];
@@ -136,6 +147,7 @@ export type InformationReviewScreenInput = {
 export type Mutation = {
   __typename?: 'Mutation';
   createApplication: ApplicationPayload;
+  createSpendingPlan: SpendingPlan;
   createUser: User;
   signup: AuthPayload;
   submitCollectIncomeScreen: ApplicationPayload;
@@ -147,6 +159,11 @@ export type Mutation = {
 
 export type MutationcreateApplicationArgs = {
   type: Scalars['String']['input'];
+};
+
+
+export type MutationcreateSpendingPlanArgs = {
+  input: CreateSpendingPlanInput;
 };
 
 
@@ -187,6 +204,7 @@ export type MutationupdateCollectedExpenseItemsArgs = {
 export type Query = {
   __typename?: 'Query';
   collectedExpenseData: CollectedExpenseData;
+  getSpendingPlan: SpendingPlan;
   login: AuthPayload;
   me?: Maybe<User>;
   user: User;
@@ -206,6 +224,13 @@ export type QueryuserArgs = {
 export type ScreenPayload = {
   applicationId: Scalars['String']['output'];
   screen: ApplicationScreen;
+};
+
+export type SpendingPlan = {
+  __typename?: 'SpendingPlan';
+  allocation?: Maybe<Array<Maybe<Allocation>>>;
+  monthLabel: Scalars['String']['output'];
+  totalBudget: Scalars['Float']['output'];
 };
 
 export type SubscriptionExpensePayload = ScreenPayload & {

@@ -10,6 +10,7 @@ import { CollectedExpenseRepositoryPort } from "../repository/collected-expense-
 import {
   CollectedExpenseDataProviderPort,
   UpdateCollectedExpenseItemsInput,
+  UpdateSpendingPlanSummaryInput,
 } from "./collected-expense-data.provider.port";
 
 @Provider
@@ -42,5 +43,28 @@ export class CollectedExpenseDataProviderAdapter implements CollectedExpenseData
       })),
     });
     return true;
+  }
+
+  async updateExpenseSummary(
+    input: UpdateSpendingPlanSummaryInput,
+  ): Promise<void> {
+    const { collectedExpenseId, totalBudget } = input;
+
+    const collectedExpenseData =
+      await this.collectedExpenseDataRepositoryPort.findById(
+        collectedExpenseId,
+      );
+
+    const moneyLeft = collectedExpenseData.moneyLeft - totalBudget;
+
+    const totalExpense = collectedExpenseData.totalExpense + totalBudget;
+
+    await this.collectedExpenseDataRepositoryPort.updateOne(
+      collectedExpenseData.id,
+      {
+        moneyLeft,
+        totalExpense,
+      },
+    );
   }
 }

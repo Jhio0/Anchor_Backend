@@ -2,8 +2,8 @@
 
 enum RepositoryTokens {
   UserRepository = 'UserRepository',
-  SpendingPlanRepository = 'SpendingPlanRepository',
   CollectedExpenseDataRepository = 'CollectedExpenseDataRepository',
+  SpendingPlanRepository = 'SpendingPlanRepository',
   ApplicationRepository = 'ApplicationRepository',
 }
 

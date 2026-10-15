@@ -4,7 +4,10 @@ import collectedExpenseDataSchema, {
   CollectedExpenseDataDocument,
 } from "./collected-expense-data.schema";
 
-import { CollectedExpenseData } from "../../../domain/entities/collected-expsense-data";
+import {
+  CollectedExpenseData,
+  ExpenseItems,
+} from "../../../domain/entities/collected-expsense-data";
 import {
   CreateCollectedExpenseData,
   UpdateCollectedExpenseData,
@@ -33,7 +36,7 @@ class CollectedExpenseRepositoryAdapter
       throw new Error(`No expense record found for user ${userId}`);
     }
 
-    const allItems: ExpenseItem[] = [
+    const allItems: ExpenseItems[] = [
       ...(category === "essentialItems" ? items : (doc.essentialItems ?? [])),
       ...(category === "financialLoanItems"
         ? items
@@ -59,9 +62,9 @@ class CollectedExpenseRepositoryAdapter
     );
   }
 
-  private calculateExpenseSummary(
+  calculateExpenseSummary(
     incomeAmount: number,
-    expenseItems: ExpenseItem[],
+    expenseItems: ExpenseItems[],
   ): ExpenseSummary {
     const totalExpense = expenseItems.reduce(
       (sum, item) => sum + Number(item.amount || 0),

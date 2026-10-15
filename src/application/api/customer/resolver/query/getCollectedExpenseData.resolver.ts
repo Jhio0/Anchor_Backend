@@ -17,19 +17,13 @@ export class GetCollectedExpenseQueryResolver {
     __: unknown,
     context: GraphQLContext,
   ): Promise<CollectedExpenseData> {
-    console.log("CURRENT USER:", context.currentUser);
-
     if (!context.currentUser) {
       throw new Error("No currentUser investigate Pls");
     }
 
-    console.log("USER ID:", context.currentUser.userId);
-
     const result = await this.collectedExpenseRepositoryPort.findByUserId(
       context.currentUser.userId,
     );
-
-    console.log("COLLECTED EXPENSE:", result);
 
     return result;
   }

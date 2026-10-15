@@ -22,11 +22,27 @@ class SpendingPlanRepositoryAdapter
   async findByUserAndMonth(
     userId: string,
     monthLabel: Date,
-  ): Promise<SpendingPlan | null> {
-    const document = await this.model.findOne({ userId, monthLabel }).exec();
+  ): Promise<SpendingPlan> {
+    const startOfMonth = new Date(
+      Date.UTC(monthLabel.getUTCFullYear(), monthLabel.getUTCMonth(), 1),
+    );
+
+    const startOfNextMonth = new Date(
+      Date.UTC(monthLabel.getUTCFullYear(), monthLabel.getUTCMonth() + 1, 1),
+    );
+
+    const document = await this.model
+      .findOne({
+        userId,
+        monthLabel: {
+          $gte: startOfMonth,
+          $lt: startOfNextMonth,
+        },
+      })
+      .exec();
 
     if (!document) {
-      return null;
+      throw new Error("Spending plan not found for this month");
     }
 
     return this.toObject(document);
@@ -36,10 +52,10 @@ class SpendingPlanRepositoryAdapter
     return {
       id: document._id.toHexString(),
       userId: document.userId,
-      applicationId: document.applicationId,
+      collectedExpenseId: document.collectedExpenseId,
       monthLabel: document.monthLabel,
       totalBudget: document.totalBudget,
-      allocations: document.allocations.map((alloc) => ({
+      allocations: (document.allocations ?? []).map((alloc) => ({
         name: alloc.name,
         spent: alloc.spent,
       })),

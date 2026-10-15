@@ -1,6 +1,7 @@
 // ******** THIS FILE IS GENERATED, MANUAL CHANGES WILL BE OVERWRITTEN ******** //
 
 enum ProviderTokens {
+  SpendingPlanProviderAdapter = 'SpendingPlanProviderAdapter',
   CollectedExpenseDataProviderAdapter = 'CollectedExpenseDataProviderAdapter',
   ApplicationProviderAdapter = 'ApplicationProviderAdapter',
   SubmitInformationReviewNodeHandlerAdapter = 'SubmitInformationReviewNodeHandlerAdapter',
